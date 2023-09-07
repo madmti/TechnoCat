@@ -10,6 +10,25 @@
     <title>Landing</title>
 </head>
 <body>
-    
+    <div class="container">
+        <form id="login" method="POST" action="/api/form">{% csrf_token %}
+            <h1>Iniciar</h1>
+            <div class="inputField">
+                <input type="text" name="Email">
+                <label>Correo Usm</label>
+            </div>
+            <div class="inputField">
+                <input type="text" name="Pass">
+                <label>Contraseña</label>
+            </div>
+            <input type="submit">
+        </form>
+        <form id="register" class="off">
+            <h1>Registrarse</h1>
+        </form>
+        <button>Registrarse</button>
+    </div>
+    {% load static %}
+    <script src="{% static 'js/landing.js' %}"></script>
 </body>
 </html>

@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import *
+from api.views import validarForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/', landing),
+    path('', landing),
+    path('api/form', validarForm),
+    path('menu', menu)
 ]

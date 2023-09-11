@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 :root{
     --t:rgba(0, 0, 0, 0);
 }
@@ -25,11 +27,13 @@ form{
     flex-direction: column;
     width: 60em;
     height: 30em;
+    text-shadow: 0 0 2px black;
+    font-family: 'Lobster', cursive;
     outline: solid 0.2em var(--t);
 }
 
 form h1{
-    font-size: 3em;
+    font-size: 3.5em;
     color: white;
 }
 
@@ -46,12 +50,16 @@ form div.inputField{
 
 form div.inputField input{
     height: 3em;
-    width: 20em;
+    width: 18em;
     background-color: #91E9FF;
     border: white solid 0.3em;
     border-radius: 1em;
     outline: solid 0.2em white;
     transition: all 200ms ease-in-out;
+    font-family: 'Lobster', cursive;
+    color: black;
+    padding-left: 1em;
+    font-size: 1.2em;
 }
 
 form div.inputField label{
@@ -62,10 +70,10 @@ form div.inputField label{
     pointer-events: none;
     transition: all 200ms ease-in-out;
 }
-form div.inputField input:hover ~ label{
+form div.inputField input:hover ~ label, form div.inputField input:focus ~ label, form div.inputField input:valid ~ label{
     opacity: 0;
 }
-form div.inputField input:hover{
+form div.inputField input:hover, form div.inputField input:focus, form div.inputField input:valid{
     outline-offset: 0.2em;
 }
 

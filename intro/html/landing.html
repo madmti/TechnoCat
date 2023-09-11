@@ -1,5 +1,3 @@
-<!--<form action="/menu/" method="POST">{% csrf_token %}-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,22 +9,32 @@
 </head>
 <body>
     <div class="container">
-        <form id="login" method="POST" action="/api/form">{% csrf_token %}
-            <h1>Iniciar</h1>
+        <form id="login" method="POST" action="/api/Log">{% csrf_token %}
+            <h1>Ingresar</h1>
             <div class="inputField">
-                <input type="text" name="Email">
-                <label>Correo Usm</label>
+                <input required type="text" id="email" name="email">
+                <label for="email">Correo Usm</label>
             </div>
             <div class="inputField">
-                <input type="text" name="Pass">
-                <label>Contraseña</label>
+                <input required type="password" id="contra" name="contra">
+                <label for="contra">Contraseña</label>
             </div>
             <input type="submit">
         </form>
-        <form id="register" class="off">
+        <form id="register" class="off" method="POST" action="/api/Reg">{% csrf_token %}
             <h1>Registrarse</h1>
+            <div class="inputField">
+                <input required type="text" id="email" name="email">
+                <label for="email">Correo Usm</label>
+            </div>
+            <div class="inputField">
+                <input required type="password" id="contra" name="contra">
+                <label for="contra">Contraseña</label>
+            </div>
+            <input type="submit">
         </form>
         <button>Registrarse</button>
+        <h4>{{msg}}</h4>
     </div>
     {% load static %}
     <script src="{% static 'js/landing.js' %}"></script>

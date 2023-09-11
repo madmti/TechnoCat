@@ -4,5 +4,4 @@ from django.db import models
 
 class User(models.Model):
     email = models.EmailField()
-    contra = models.CharField(max_length=30)
-    funcionario = models.BooleanField()
+    contra = models.BinaryField()

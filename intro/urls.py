@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import *
-from api.views import validarForm
+from api.views import validarForm, validarRegistro
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', landing),
-    path('api/form', validarForm),
-    path('menu', menu)
+    path('', landing, name='landing'),
+    path('msg/<str:msg>', landing),
+    path('api/Log', validarForm),
+    path('api/Reg', validarRegistro),
+    path('menu', menu),
 ]

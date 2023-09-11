@@ -4,6 +4,6 @@ def menu(req):
     ctx = {}
     return render( req, 'menu.html', ctx )
 
-def landing(req):
-    ctx = {  }
+def landing(req, msg=''):
+    ctx = { 'msg':msg }
     return render( req, 'landing.html', ctx )

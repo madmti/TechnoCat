@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+    {% load static %}
     <link href="{% static 'css/landing.css' %}" rel="stylesheet">
     <title>Landing</title>
 </head>
@@ -12,11 +14,11 @@
         <form id="login" method="POST" action="/api/Log">{% csrf_token %}
             <h1>Ingresar</h1>
             <div class="inputField">
-                <input required type="text" id="email" name="email">
+                <input required type="text" id="email" name="email" autocomplete="email">
                 <label for="email">Correo Usm</label>
             </div>
             <div class="inputField">
-                <input required type="password" id="contra" name="contra">
+                <input required type="password" id="contra" name="contra" autocomplete="current-password">
                 <label for="contra">Contraseña</label>
             </div>
             <input type="submit">
@@ -34,9 +36,7 @@
             <input type="submit">
         </form>
         <button>Registrarse</button>
-        <h4>{{msg}}</h4>
+        <h3>{{msg}}</h3>
     </div>
-    {% load static %}
-    <script src="{% static 'js/landing.js' %}"></script>
 </body>
 </html>

@@ -24,5 +24,5 @@ urlpatterns = [
     path('msg/<str:msg>', landing),
     path('api/Log', validarForm),
     path('api/Reg', validarRegistro),
-    path('menu', menu),
+    path('menu/<slug:ssid>', menu),
 ]

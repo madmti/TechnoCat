@@ -25,4 +25,5 @@ urlpatterns = [
     path('api/Log', validarForm),
     path('api/Reg', validarRegistro),
     path('menu/<slug:ssid>', menu),
+    path('panel/<slug:ssid>', panel)
 ]

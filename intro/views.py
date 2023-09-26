@@ -12,3 +12,7 @@ def menu(req, ssid=''):
 def landing(req, msg=''):
     ctx = { 'msg':msg if msg=='' else msg.replace('_', ' ') }
     return render( req, 'landing.html', ctx )
+
+def panel(req, ssid=''):
+    ctx = {}
+    return render( req, 'panel.html', ctx )

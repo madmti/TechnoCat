@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import *
-from api.views import validarForm, validarRegistro
+from api.views import validarForm, validarRegistro, PerzoMascota
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +25,6 @@ urlpatterns = [
     path('api/Log', validarForm),
     path('api/Reg', validarRegistro),
     path('menu/<slug:ssid>', menu),
-    path('panel/<slug:ssid>', panel)
+    path('panel/<slug:ssid>', panel),
+    path('perzomascota/', PerzoMascota)
 ]

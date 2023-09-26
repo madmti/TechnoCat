@@ -13,8 +13,9 @@ def newUser(email, passw):
     UserData.objects.create(
         email=email,
         AliasM='Pedro', # Alias default de la mascota
-        creditos=0,
-        NBA=0
+        CR=0,
+        NBA=0,
+        CA=0,
     ).save() #data
 
 
@@ -40,4 +41,10 @@ def validarRegistro(req):
     data = form.clean()
     if len(User.objects.filter(email=data['email'])) != 0: return redirect('/msg/usuario_ya_existe')
     newUser(data['email'], data['contra'])
-    return redirect('/menu')
+
+    ssid = '1234'
+
+    return redirect('/menu/%s'%ssid)
+
+def PerzoMascota(req):
+    return render(req, 'perzomascota.html')

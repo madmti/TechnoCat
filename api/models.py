@@ -4,5 +4,6 @@ from django.db import models
 class UserData(models.Model):
     email = models.EmailField(default='')
     AliasM = models.CharField(max_length=20) # Alias de la Mascota
-    creditos = models.IntegerField()
-    NBA = models.IntegerField() #Nivel de Bienestar del Abmiente
+    CA = models.IntegerField(default=0) # Credito ambiental
+    NBA = models.IntegerField(default=0) #Nivel de Bienestar del Abmiente
+    CR = models.IntegerField(default=0) #Credito Real

@@ -4,6 +4,21 @@ from .models import UserData
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 import datetime
+import qrcode
+import qrcode.image.svg
+from io import BytesIO
+
+# QR
+def QrCode(request, id):
+    ctx = {}
+    factory = qrcode.image.svg.SvgImage
+    img = qrcode.make(id, image_factory=factory, box_size=20)
+    stream = BytesIO()
+    img.save(stream)
+    ctx["svg"] = stream.getvalue().decode()
+
+    return render(request, "qrcode.html", ctx=ctx)
+
 
 # ACTIONS.
 def newUser(email, passw):

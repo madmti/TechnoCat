@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import *
-from api.views import validarForm, validarRegistro, PerzoMascota
+from api.views import validarForm, validarRegistro, PerzoMascota, QrCode, QrCodeScan
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +26,7 @@ urlpatterns = [
     path('api/Reg', validarRegistro),
     path('menu/<slug:ssid>', menu),
     path('panel/<slug:ssid>', panel),
-    path('perzomascota/', PerzoMascota)
+    path('perzomascota/', PerzoMascota),
+    path('api/qr/<slug:id>', QrCode),
+    path('panel/scan', QrCodeScan)
 ]

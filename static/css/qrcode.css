@@ -1,0 +1,38 @@
+div.container, html, body{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+div.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div#UP{
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 20%;
+}
+div#UP h1{
+    font-size: 4em;
+}
+div#C{
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 60%;
+}
+div#BOT{
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 10%;
+}
+
+div#C svg{
+    height: 100%;
+    border: solid black 0.2em;
+}

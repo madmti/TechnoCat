@@ -15,9 +15,12 @@ def QrCode(request, id):
     img = qrcode.make(id, image_factory=factory, box_size=20)
     stream = BytesIO()
     img.save(stream)
-    ctx["svg"] = stream.getvalue().decode()
+    ctx["svg"] = stream.getvalue().decode().replace('svg:','').replace('mm','vh')
+    return render(request, "qrcode.html", ctx)
 
-    return render(request, "qrcode.html", ctx=ctx)
+def QrCodeScan(req):
+
+    return render(req, 'scan.html', {})
 
 
 # ACTIONS.

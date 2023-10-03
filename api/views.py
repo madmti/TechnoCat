@@ -43,8 +43,8 @@ def validarForm(req):
     form = LogRegForm(req.POST)
     if not form.is_valid(): return redirect('/msg/campos_no_validos')
     data = form.clean()
-
-    user = User.objects.get(email=data['email'])
+    try: user = User.objects.get(email=data['email'])
+    except: return redirect('/msg/usuario_no_encontrado')
 
     if not check_password(data['contra'], user.password): return redirect('/msg/email_o_contraseña_incorrecta')
     
@@ -62,7 +62,7 @@ def validarRegistro(req):
 
     ssid = '1234'
 
-    return redirect('/menu/%s'%ssid)
+    return redirect('/perzomascota/%s'%ssid)
 
-def PerzoMascota(req):
+def PerzoMascota(req, ssid):
     return render(req, 'perzomascota.html')

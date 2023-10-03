@@ -26,7 +26,7 @@ urlpatterns = [
     path('api/Reg', validarRegistro),
     path('menu/<slug:ssid>', menu),
     path('panel/<slug:ssid>', panel),
-    path('perzomascota/', PerzoMascota),
+    path('perzomascota/<slug:ssid>', PerzoMascota),
     path('api/qr/<slug:id>', QrCode),
     path('panel/scan', QrCodeScan)
 ]

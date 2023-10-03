@@ -9,29 +9,37 @@
     <link href="{% static 'css/landing.css' %}" rel="stylesheet">
     <title>Landing</title>
 </head>
-<body>
+<body style="background-image: url(/static/img/LandingBack.jpg);">
     <div class="container">
         <form id="login" method="POST" action="/api/Log">{% csrf_token %}
-            <h1>Ingresar</h1>
+            <div id="h1field">
+                <div id="Bgh1"><h1>Ingresar</h1></div>
+            </div>
             <div class="inputField">
                 <input required type="text" id="email" name="email" autocomplete="email">
                 <label for="email">Correo Usm</label>
+                <div id="Bginpt" class="donttouch"></div>
             </div>
             <div class="inputField">
                 <input required type="password" id="contra" name="contra" autocomplete="current-password">
                 <label for="contra">Contraseña</label>
+                <div id="Bginpt" class="donttouch"></div>
             </div>
             <input type="submit">
         </form>
         <form id="register" class="off" method="POST" action="/api/Reg">{% csrf_token %}
-            <h1>Registrarse</h1>
+            <div id="h1field">
+                <div id="Bgh1"><h1>Registrarse</h1></div>
+            </div>
             <div class="inputField">
                 <input required type="text" id="email" name="email">
                 <label for="email">Correo Usm</label>
+                <div id="Bginpt" class="donttouch"></div>
             </div>
             <div class="inputField">
                 <input required type="password" id="contra" name="contra">
                 <label for="contra">Contraseña</label>
+                <div id="Bginpt" class="donttouch"></div>
             </div>
             <input type="submit">
         </form>

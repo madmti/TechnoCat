@@ -13,7 +13,10 @@
     <div class="container">
         <form id="login" method="POST" action="/api/Log">{% csrf_token %}
             <div id="h1field">
-                <div id="Bgh1"><h1>Ingresar</h1></div>
+                <div id="Bgh1">
+                    <div></div>
+                    <h1>Ingresar</h1>
+                </div>
             </div>
             <div class="inputField">
                 <input required type="text" id="email" name="email" autocomplete="email">
@@ -25,11 +28,16 @@
                 <label for="contra">Contraseña</label>
                 <div id="Bginpt" class="donttouch"></div>
             </div>
-            <input type="submit">
+            <div class="inputField" id="submit">
+                <input type="submit">
+            </div>
         </form>
         <form id="register" class="off" method="POST" action="/api/Reg">{% csrf_token %}
             <div id="h1field">
-                <div id="Bgh1"><h1>Registrarse</h1></div>
+                <div id="Bgh1">
+                    <div></div>
+                    <h1>Registrarse</h1>
+                </div>
             </div>
             <div class="inputField">
                 <input required type="text" id="email" name="email">
@@ -41,7 +49,9 @@
                 <label for="contra">Contraseña</label>
                 <div id="Bginpt" class="donttouch"></div>
             </div>
-            <input type="submit">
+            <div class="inputField" id="submit">
+                <input type="submit">
+            </div>
         </form>
         <button>Registrarse</button>
         <h3>{{msg}}</h3>

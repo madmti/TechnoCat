@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .forms import LogRegForm
 from .models import UserData
 from django.contrib.auth.models import User
@@ -21,6 +22,9 @@ def QrCode(request, id):
 def QrCodeScan(req):
 
     return render(req, 'scan.html', {})
+
+def UpdateUser(req, data):
+    return HttpResponse(data)
 
 
 # ACTIONS.

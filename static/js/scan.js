@@ -1,6 +1,9 @@
 function onScanSuccess(decodedText, decodedResult) {
     console.log(`Code scanned = ${decodedText}`, decodedResult);
-}
+    fetch(`/api/update/${JSON.stringify(decodedResult)}`).then(res => {
+        console.log(res);
+    });
+};
 var html5QrcodeScanner = new Html5QrcodeScanner(
 	"reader", { fps: 20, qrbox: 250 });
 

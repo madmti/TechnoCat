@@ -1,151 +1,159 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
-:root{
-    --t:rgba(0, 0, 0, 0);
+@media only screen and (max-width:446px) {h1{font-size: 100%;}}
+@media only screen and (min-width:446px) {h1{font-size: 150%;}}
+@media only screen and (min-width:573px) {
+    body{
+        background-position: center;
+        background-size: cover;
+        background-repeat: repeat-y;
+        background-clip:border-box;
+    }
+    input:not([type='submit']){
+        font-size:xx-large;
+    }
+    h1{
+        font-size: 250%;
+    }
 }
-
-body, html {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'Lobster', cursive;
-}
-
-body{
-    background-repeat: repeat;
-    background-position: center;
-    background-size:cover;
-}
-
-.container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-
-form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 50%;
-    min-width: 50em;
-    height: 60%;
-    min-height: 30em;
-    text-shadow: 0 0 2px black;
-    outline: solid 0.2em var(--t);
-}
-
-div.container h3{
-    color: red;
-}
-div#h1field{
-    display: grid;
-    place-items: center;
-    width: 100%;
-}
-
-form div#Bgh1{
-    display: grid;
-    place-items: center;
-    background-position: center;
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-image: url('/static/img/Tittle.png');
-    height: 14.5em;
-    width: 100%;
-    transform: translate(0, -20%);
-}
-
-form h1{
-    position: relative;
-    font-size: 3.5em;
-    color: white;
-    top: 4rem;
-    margin: 0;
-}
-
-div#Bginpt{
-    z-index: -1;
-    position: absolute;
-    height: 11em;
-    width: 50%;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-image: url('/static/img/Input.png');
-    transform: translate(1em, 0.5em);
-    transition: all 200ms ease-in-out;
-}
-
-form div.inputField{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    margin: 2em;
-    width: 20em;
-    height: 20em;
-    z-index: 2;
-}
-
-form div.inputField input{
-    background-color: #dab4a2;
-    height: 3em;
-    width: 20em;
-    border: 0;
-    outline: 0;
-    transition: all 200ms ease-in-out;
-    font-family: 'Lobster', cursive;
-    color: black;
-    padding-left: 1em;
-    font-size: 1.2em;
-}
-
-form div.inputField label{
-    color: white;
-    font-size: 1.5em;
-    position: absolute;
-    user-select: none;
-    pointer-events: none;
-    transition: all 200ms ease-in-out;
-}
-form div.inputField input:hover ~ label, form div.inputField input:focus ~ label, form div.inputField input:valid ~ label{
-    opacity: 0;
-}
-form div.inputField input:hover ~ div#Bginpt, form div.inputField input:focus ~ div#Bginpt, form div.inputField input:valid ~ div#Bginpt{
-    height: 12em;
+@media only screen and (min-width:757px) {h1{font-size: 350%;}}
+@media only screen and (min-width:1053px) {h1{font-size: 450%;}}
+@media only screen and (max-width:573px) {
+    body{
+        background-position: center;
+        background-size: contain;
+        background-repeat: repeat-y;
+        background-clip:border-box;
+    }
+    input:not([type='submit']){
+        font-size:large;
+    }
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px #dab4a2 inset !important;
+    -webkit-box-shadow: 0 0 0 5em #dab4a2 inset !important;
+    font-family: 'Lobster', cursive;
+}
+
+input:-webkit-autofill ~ label ,
+input:-webkit-autofill:hover ~ label , 
+input:-webkit-autofill:focus ~ label , 
+input:-webkit-autofill:active ~ label {
+    opacity: 0;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: 'Lobster', cursive;
+}
+
+body{
+    display: grid;
+    place-items: center;
+}
+div.container{
+    height: 80%;
+    width: 50%;
+    display: grid;
+    place-items: center;
+    padding: 0 10%;
+    grid-template-rows: 10fr 1fr 1fr;
 }
 
 form.off{
     display: none;
 }
 
-button{
-    background-image: url('/static/img/btn.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    border: 0;
-    background-color: transparent;
-    height: 3em;
-    width: 8em;
-    cursor: pointer;
-}
-button{
-    margin: 1em;
+form{
+    height: 100%;
+    width: 100%;
+    max-width: 40em;
+    display: grid;
+    grid-template-rows: 6fr 2fr 2fr 1fr;
 }
 
-.donttouch{
+div#h1field{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+h1{
+    margin: 0;
+    user-select: none;
+}
+
+div#Bgh1{
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    justify-content: center;
+    position: absolute;
+    width: 60%;
+    aspect-ratio: 3;
+    transform: translate(0,-10%);
+    background-image: url(/static/img/Tittle.png);
+    background-position:center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+div.inputField{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.inputField:not(#submit){
+    background-image: url(/static/img/Input.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+input:not([type='submit']){
+    width: 90%;
+    aspect-ratio: 7;
+    border: 0;
+    background-color: #dab4a2;
+    text-align: center;
+    font-family: 'Lobster', cursive;
+}
+
+input:not([type='submit']):is(:hover, :focus, :valid){
+    outline: 0;
+}
+input:not([type='submit']):is(:hover, :focus, :valid) ~ label{
+    opacity: 0;
+}
+
+input[type='submit'], button{
+    width: 20%;
+    aspect-ratio: 2.8;
+    border: 0;
+    background-image: url(/static/img/btn.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    font-size:medium;
+    font-weight: bold;
+    min-width: 6em;
+    max-width: 10em;
+}
+
+label{
+    position: absolute;
     pointer-events: none;
+    user-select: none;
+}
+
+h3{
+    color: red;
 }

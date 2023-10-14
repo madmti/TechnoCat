@@ -8,8 +8,32 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-
+    <div class="back">
+        <div class="top">
+            Cielo Cielo Cielo
+        </div>
+        <div class="mid">
+            Alrededor Alrededor Alrededor
+        </div>
+        <div class="bot">
+            Suelo Suelo Suelo
+        </div>
     </div>
+    <div class="cont">
+        <div class="U">
+            <section>Monedas / Tienda</section>
+            <section><a href="/perzomascota/{{ssid}}">Personalizar</a></section>
+        </div>
+        <div class="B">
+            <section>Qr</section>
+            <section>Juegos</section>
+        </div>
+    </div>
+    <div class="pet">
+        <div id="name">PetName</div>
+        <div id="img">PetImage</div>
+    </div>
+    {% load static %}
+    <script src="{% static 'js/menu.js' %}"></script>
 </body>
 </html>

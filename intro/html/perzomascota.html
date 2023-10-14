@@ -3,9 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/perzomascota.css' %}">
     <title>Document</title>
 </head>
 <body>
-    
+    <form action="" method="post">{% csrf_token %}
+        <section id="first">
+            <div id="prev">
+                <span id="icon"></span>
+            </div>
+            <div id="name">
+                <div class="cont gold" id="name">
+                    <h1 id="petname">{{ petName }}</h1>
+                    <input id="petname" type="text" class="off" placeholder="Nombre">
+                    <button class="edit" type="button">
+                        {% load static %}
+                        <img class="res" src="{% static 'img/editIcon.png' %}">
+                    </button>
+                    <span></span>
+                </div>
+            </div>
+        </section>
+        <section id="second">
+            <div id="A" class="let">
+                <div class="label">
+                    <hr>
+                    <h2>Tipo</h2>
+                    <hr>
+                </div>
+                <div class="caja gold">
+                    <div>
+                        <button type="button"><</button>
+                    </div>
+                    <div>
+                        <h2>{{tipo}}</h2>
+                    </div>
+                    <div>
+                        <button type="button">></button>
+                    </div>
+                </div>
+            </div>
+            <div id="B" class="let">
+                <div class="label">
+                    <hr>
+                    <h2>Estado</h2>
+                    <hr>
+                </div>
+                <div class="caja gold">
+                    <div>
+                        <button type="button"><</button>
+                    </div>
+                    <div>
+                        <h2>{{estado}}</h2>
+                    </div>
+                    <div>
+                        <button type="button">></button>
+                    </div>
+                </div>
+            </div>
+            <div id="C" class="let">
+                <input type="submit" value="Aplicar" class="gold">
+                <button type="button" class="gold">Cancelar</button>
+            </div>
+        </section>
+    </form>
+    {% load static %}
+    <script src="{% static 'js/perzomascota.js' %}"></script>
 </body>
 </html>

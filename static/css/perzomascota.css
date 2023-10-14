@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+@media only screen and (min-width:585px) {
+    body{
+        background-size: cover;
+    }
+}
+@media only screen and (max-width:585px) {
+    body{
+        background-size: contain;
+    }
+}
+@media only screen and (max-width:350px) {
+    [id='C']{
+        padding: 0;
+    }
+}
+
+@media only screen and (min-width:921px) {
+    form{grid-template-columns: 1fr 1fr;}
+    [class='res']{width: 50%;}
+    [id='petname']{font-size: x-large;}
+    section{height: 100%;}
+}
+@media only screen and (max-width:921px) {
+    form{grid-template-rows: 1fr 1fr;}
+    [class='res']{height: 50%;}
+    [id='petname']{font-size: large;}
+    section{height: 80%;}
+}
+
+@keyframes bgIn {
+    0%{
+        background-position: center 0;
+        filter: blur(10px);
+    }
+    100%{
+        background-position: center 105em;
+        filter: blur(0px);
+    }
+}
+@keyframes formIn {
+    0%{
+        transform: translate(0, -100em);
+    }
+    100%{
+        transform: translate(0, 0);
+    }
+}
+
+body, html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #91E9FF;
+    font-family: 'Lobster', cursive;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-image: url(/static/img/LandingBack.jpg);
+    background-repeat: repeat-y;
+    background-position: center 105em;
+    filter: blur(0px);
+    animation: bgIn 1.5s ease-in-out;
+}
+
+form{
+    display: grid;
+    height: 80%;
+    width: 90%;
+    animation: formIn 1.5s ease-in-out;
+}
+
+section{
+    display: grid;
+}
+div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+span#icon{
+    width: 90%;
+    height: 90%;
+
+    background-image: url(/static/img/regular-cat/stand.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    background-color: #dab4a2;
+    border: solid 0.2em #c29987;
+    outline: solid 0.7em #835142;
+    border-radius: 2em;
+}
+
+.off{
+    display: none;
+}
+
+.cont{
+    display: grid;
+    grid-template-columns: 20fr 4fr 1fr;
+    height: 60%;
+    width: 90%;
+
+}
+
+.gold{
+    background-color: #fff1d4;
+    border: solid 0.7em #ffd981;
+    outline: solid 0.2em #caad65;
+    border-radius: 2em;
+}
+
+button.edit{
+    cursor: pointer;
+    height: 80%;
+    background-color: transparent;
+    border-radius: 1em;
+    border: solid 0.2em #835142;
+    overflow: hidden;
+}
+
+img{
+    aspect-ratio: 1.1;
+    user-select: none;
+    pointer-events: none;
+}
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+}
+
+#petname{
+    height: 70%;
+    text-align: center;
+    background-color: transparent;
+}
+
+#first{
+    grid-template-rows: 2fr 1fr;
+}
+#second{
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+#C{
+    height: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2%;
+    padding: 5%;
+}
+
+#C * {
+    height: 50%;
+    max-height: 8em;
+    min-height: 3em;
+    font-family: 'Lobster', cursive;
+    font-size: x-large;
+}
+
+#C *.gold{
+    border-width: 0.2em;
+}
+
+div:is(#A, #B){
+    height: 80%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+}
+
+.label h2{
+    font-size: xx-large;
+}
+
+.caja{
+    border-width: 0.3em;
+    height: 80%;
+    width: 80%;
+    justify-self: center;
+    min-height: 2em;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+
+.caja div{
+    height: 100%;
+}
+
+button[type='button']:not(.edit, .gold){
+    width: 100%;
+    height: 100%;
+    font-family: 'Lobster', cursive;
+    font-size: x-large;
+    background-color: transparent;
+    border: 0;
+}
+
+h2{
+    margin: 0;
+    user-select: none;
+    text-transform: capitalize;
+}
+
+hr{
+    margin: 0 2em;
+    width: 20%;
+    border: solid 0.1em black;
+}
+
+body.gb{
+    background-position: center -200em;
+    filter: blur(50px);
+}
+
+body.gb form{
+    transform: translate(0, -200em);
+}
+body, form{
+    transition: all 1s ease-in;
+}
+
+button, input[type='submit']{
+    cursor: pointer;
+}

@@ -18,16 +18,23 @@ from django.urls import path
 from .views import *
 from api.views import *
 
+#handler404 = 'api.views.unMatch'
+#handler500 = 'api.views.th'
+
 urlpatterns = [
+    #Actions
     path('admin/', admin.site.urls),
-    path('', landing, name='landing'),
-    path('msg/<str:msg>', landing),
     path('api/Log', validarForm),
     path('api/Reg', validarRegistro),
-    path('menu/<slug:ssid>', menu),
-    path('panel/<slug:ssid>', panel),
-    path('perzomascota/<slug:ssid>', PerzoMascota),
-    path('api/qr/<slug:id>', QrCode),
+    path('api/update/<slug:data>', UpdateUser),
+    path('api/validateCREDS/', validarCred),
+
+    #User Views
+    path('', landing, name='landing'),
+    path('msg/<str:msg>', landing),
+    path('menu/<str:ssid>', menu),
+    path('panel/<str:ssid>', panel),
+    path('perzomascota/<str:ssid>', PerzoMascota),
+    path('api/qr/<str:id>', QrCode),
     path('panelscan/', QrCodeScan),
-    path('api/update/<slug:data>', UpdateUser)
 ]

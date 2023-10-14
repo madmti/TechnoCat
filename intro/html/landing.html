@@ -9,9 +9,12 @@
     <link href="{% static 'css/landing.css' %}" rel="stylesheet">
     <title>Landing</title>
 </head>
-<body style="background-image: url(/static/img/LandingBack.jpg);">
+<body>
     <div class="container">
-        <form id="login" method="POST" action="/api/Log">{% csrf_token %}
+        <form id="h" action="/api/validateCREDS/" method="POST">{% csrf_token %}
+            <input id="creds" type="hidden" name="creds">
+        </form>
+        <form id="login" class="on" method="POST" action="/api/Log">{% csrf_token %}
             <div id="h1field">
                 <div id="Bgh1">
                     <div></div>
@@ -21,12 +24,10 @@
             <div class="inputField">
                 <input required type="text" id="email" name="email" autocomplete="email">
                 <label for="email">Correo Usm</label>
-                <div id="Bginpt" class="donttouch"></div>
             </div>
             <div class="inputField">
                 <input required type="password" id="contra" name="contra" autocomplete="current-password">
                 <label for="contra">Contraseña</label>
-                <div id="Bginpt" class="donttouch"></div>
             </div>
             <div class="inputField" id="submit">
                 <input type="submit">
@@ -42,12 +43,10 @@
             <div class="inputField">
                 <input required type="text" id="email" name="email">
                 <label for="email">Correo Usm</label>
-                <div id="Bginpt" class="donttouch"></div>
             </div>
             <div class="inputField">
                 <input required type="password" id="contra" name="contra">
                 <label for="contra">Contraseña</label>
-                <div id="Bginpt" class="donttouch"></div>
             </div>
             <div class="inputField" id="submit">
                 <input type="submit">

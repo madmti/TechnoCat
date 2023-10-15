@@ -33,8 +33,10 @@ urlpatterns = [
     path('', landing, name='landing'),
     path('msg/<str:msg>', landing),
     path('menu/<str:ssid>', menu),
-    path('panel/<str:ssid>', panel),
     path('perzomascota/<str:ssid>', PerzoMascota),
     path('api/qr/<str:id>', QrCode),
-    path('panelscan/', QrCodeScan),
+
+    #Super Views
+    path('panel/<str:ssid>', panel),
+    path('panelscan/<str:ssid>', QrCodeScan),
 ]

@@ -15,9 +15,9 @@ def landing(req, msg=''):
     return render( req, 'landing.html', ctx )
 
 def panel(req, ssid):
-    isValid, auth = validarSSID(ssid)
-    if not (isValid and auth): return redirect('/msg/la_sesion_ya_no_es_valida')
-    ctx = {}
+    #isValid, auth = validarSSID(ssid)
+    #if not (isValid and auth): return redirect('/msg/la_sesion_ya_no_es_valida')
+    ctx = {'ssid':ssid}
     return render( req, 'panel.html', ctx )
 
 

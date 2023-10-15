@@ -31,7 +31,7 @@ def QrCode(request, id):
     ctx["svg"] = stream.getvalue().decode().replace('svg:','').replace('mm','vh')
     return render(request, "qrcode.html", ctx)
 
-def QrCodeScan(req):
+def QrCodeScan(req, ssid):
 
     return render(req, 'scan.html', {})
 

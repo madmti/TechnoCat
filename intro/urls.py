@@ -26,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/Log', validarForm),
     path('api/Reg', validarRegistro),
-    path('api/update/<slug:data>', UpdateUser),
+    path('api/update/<str:ssid>', UpdateUser),
     path('api/validateCREDS/', validarCred),
 
     #User Views
@@ -39,4 +39,6 @@ urlpatterns = [
     #Super Views
     path('panel/<str:ssid>', panel),
     path('panelscan/<str:ssid>', QrCodeScan),
+    path('panelform/<str:ssid>', NoQrForm),
+    path('scanmsg/<str:ssid>/<str:msg>', panel),
 ]

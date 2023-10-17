@@ -1,8 +1,14 @@
+const inputH = document.querySelector('input#ID');
+const form = document.querySelector('form');
+const divQr = document.querySelector('div#reader');
+
 function onScanSuccess(decodedText, decodedResult) {
-    console.log(`Code scanned = ${decodedText}`, decodedResult);
-    fetch(`/api/update/${JSON.stringify(decodedResult)}`).then(res => {
-        console.log(res);
-    });
+    if (decodedResult.result.format.formatName !== "QR_CODE"){return};
+    if (isNaN(decodedText) && isNaN(parseInt(decodedText))){return};
+
+    divQr.className = 'h';
+    inputH.value = decodedText;
+    form.className = '';
 };
 var html5QrcodeScanner = new Html5QrcodeScanner(
 	"reader", { fps: 20, qrbox: 250 });

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import LogRegForm
+from .forms import LogRegForm, UpdateForm
 from .models import UserData
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
@@ -32,11 +32,26 @@ def QrCode(request, id):
     return render(request, "qrcode.html", ctx)
 
 def QrCodeScan(req, ssid):
+    isValid, auth = validarSSID(ssid)
+    if not (isValid and auth): return redirect('/msg/la_sesion_ya_no_es_valida')
+    ctx = {'ssid':ssid}
+    return render(req, 'scan.html', ctx)
 
-    return render(req, 'scan.html', {})
+def NoQrForm(req, ssid):
+    isValid, auth = validarSSID(ssid)
+    if not (isValid and auth): return redirect('/msg/la_sesion_ya_no_es_valida')
+    ctx = {'ssid':ssid}
+    return render(req, 'noscan.html', ctx)
 
-def UpdateUser(req, data):
-    return HttpResponse('a')
+def UpdateUser(req, ssid):
+    isValid, auth = validarSSID(ssid)
+    if not (isValid and auth): return redirect('/msg/la_sesion_ya_no_es_valida')
+    if req.method != 'POST': redirect(f'/scanmsg/{ssid}/metodo_no_valido')
+    formData = UpdateForm(req.POST).clean()
+    if formData['isScan']: target = UserData.objects.get(id=formData['userID'])
+    else: target = UserData.objects.get(email=formData['email'])
+    msg = target.updateFromDict(formData)
+    return redirect(f'/scanmsg/{ssid}/{msg}')
 
 # ACTIONS.
 def newUser(email, passw):

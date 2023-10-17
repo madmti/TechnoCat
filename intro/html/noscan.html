@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link href="{% static 'css/qrScan.css' %}" rel="stylesheet">
+    <link href="{% static 'css/noqrScan.css' %}" rel="stylesheet">
     <title>hola</title>
 </head>
 <body>
     <div class="container">
-        <form action="/api/update/{{ssid}}" method="POST" class="h">{% csrf_token %}
-            <input type="hidden" name="isScan" value="1">
-            <input type="hidden" name="email" value="noemail@value.cl">
-            <input type="hidden" name="userID" id="ID">
+        <form action="/api/update/{{ssid}}" method="POST">{% csrf_token %}
+            <input type="hidden" name="isScan" value="0">
+            <input type="hidden" name="userID" value="-1">
+            <div class="inputField">
+                <label for="email">Correo</label>
+                <input type="text" name="email" id="ID">
+            </div>
             <div class="inputField">
                 <label for="NBA">Nivel de Bienestar Ambiental</label>
                 <input type="number" name="NBA" id="NBA" value="0" min="0"/>
@@ -29,13 +32,9 @@
                 <input type="submit">
             </div>
         </form>
-        <div id="reader" class="">a</div>
         <div class="cb">
             <a href="/panel/{{ssid}}">Volver</a>
         </div>
     </div>
-    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
-    {% load static %}
-    <script src="{% static 'js/scan.js' %}"></script>
 </body>
 </html>

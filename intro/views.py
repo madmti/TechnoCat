@@ -14,10 +14,10 @@ def landing(req, msg=''):
     ctx = { 'msg':msg if msg=='' else msg.replace('_', ' ') }
     return render( req, 'landing.html', ctx )
 
-def panel(req, ssid):
-    #isValid, auth = validarSSID(ssid)
-    #if not (isValid and auth): return redirect('/msg/la_sesion_ya_no_es_valida')
-    ctx = {'ssid':ssid}
+def panel(req, ssid, msg=''):
+    isValid, auth = validarSSID(ssid)
+    if not (isValid and auth): return redirect('/msg/la_sesion_ya_no_es_valida')
+    ctx = {'ssid':ssid, 'msg':msg.replace('_',' ')}
     return render( req, 'panel.html', ctx )
 
 

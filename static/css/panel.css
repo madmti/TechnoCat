@@ -25,6 +25,7 @@ body {
 div.container {
   display: grid;
   place-items: center;
+  grid-template-rows: 3fr 3fr 1fr;
 }
 
 a {
@@ -44,6 +45,10 @@ a {
   border: solid 0.7em #ffd981;
   outline: solid 0.2em #caad65;
   border-radius: 2em;
+}
+
+h2 {
+  user-select: none;
 }
 
 /*# sourceMappingURL=panel.css.map */

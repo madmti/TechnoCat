@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import LogRegForm, UpdateForm
-from .models import UserData
+from .models import UserData, Item
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 import datetime
@@ -22,13 +22,14 @@ AUTHLEVELKEYS = {
 
 
 # QR
-def QrCode(request, id):
-    ctx = {}
+def QrCode(request, ssid):
+    id, username = getUserIDBySSID(ssid)
+    ctx = {'ssid':ssid, 'username':username}
     factory = qrcode.image.svg.SvgImage
     img = qrcode.make(id, image_factory=factory, box_size=20)
     stream = BytesIO()
     img.save(stream)
-    ctx["svg"] = stream.getvalue().decode().replace('svg:','').replace('mm','vh')
+    ctx["svg"] = stream.getvalue().decode().replace('svg:','').replace('mm','vmin')
     return render(request, "qrcode.html", ctx)
 
 def QrCodeScan(req, ssid):
@@ -68,6 +69,7 @@ def newUser(email, passw):
         CR=0,
         NBA=0,
         CA=0,
+        Items='{}'
     ).save() #data
 
 def findUserAuthLevel(user:str) -> int:
@@ -88,6 +90,62 @@ def validarAuthKey(user:str, AuthKey:bytes) -> list:
     isValid = bcrypt.checkpw(userEncode, AuthKey)
     AuthLevel = findUserAuthLevel(user)
     return [isValid, AuthLevel]
+
+def getUserIDBySSID(ssid:str) -> tuple[int, str]:
+    res = jwt.decode(
+            ssid,
+            SALT_KEY,
+            "HS256"
+        )
+    userPrimaryKey = UserData.objects.get(email=res['user']).pk
+    return userPrimaryKey, res['user']
+
+def getUserCR_CA_BySSID(ssid:str) -> tuple[int, int]:
+    '''retorna (CR, CA)'''
+    res = jwt.decode(
+        ssid,
+        SALT_KEY,
+        "HS256"
+    )
+    user = UserData.objects.get(email=res['user'])
+    return user.CR, user.CA
+
+def procesarCompra(POST, ssid):
+    try: item = POST['itemname']
+    except: return
+    res = jwt.decode(
+        ssid,
+        SALT_KEY,
+        "HS256"
+    )
+    user = UserData.objects.get(email=res['user'])
+    dbItem = Item.objects.get(name=item)
+    user.updateFromDict({
+        dbItem.tipo: - dbItem.cost,
+        'Items':item
+    })
+
+def updatePet(req, ssid):
+    isValid, auth = validarSSID(ssid)
+    if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
+    # Validar form y aplicar cambios
+
+    return redirect(f'/menu/{ssid}')
+    
+
+def getItems():
+    '''Retorna una diccionario de listas {"CA":[], "CR":[]}
+    con los items disponibles de la forma {
+        "id":int,
+        "name"str,
+        "cost":int,
+        "img":str,
+        "tipo":str(CA o CR)
+    }
+    '''
+    CA = [ el.get_clean() for el in Item.objects.filter(tipo='CA') ]
+    CR = [ el.get_clean() for el in Item.objects.filter(tipo='CR') ]
+    return {'CA':CA, 'CR':CR}
 
 def createSSID(user:str) -> str:
     is_superuser = findUserAuthLevel(user)

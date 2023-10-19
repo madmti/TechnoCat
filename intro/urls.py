@@ -28,13 +28,18 @@ urlpatterns = [
     path('api/Reg', validarRegistro),
     path('api/update/<str:ssid>', UpdateUser),
     path('api/validateCREDS/', validarCred),
+    path('api/updatePet/<str:ssid>', updatePet),
 
     #User Views
     path('', landing, name='landing'),
     path('msg/<str:msg>', landing),
     path('menu/<str:ssid>', menu),
     path('perzomascota/<str:ssid>', PerzoMascota),
-    path('api/qr/<str:id>', QrCode),
+    path('api/qr/<str:ssid>', QrCode),
+    path('tienda/<str:ssid>', tienda),
+        #-- juegos
+        path('gameselect/<str:ssid>', selectGame),
+        path('firstgame/<str:ssid>', firstGame),
 
     #Super Views
     path('panel/<str:ssid>', panel),

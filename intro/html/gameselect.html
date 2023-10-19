@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/gameselect.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="T"></div>
+        <div class="mobile res">
+            <h2 class="gold">Juegos no disponibles para mobiles aun..</h2>
+        </div>
+        <div class="C">
+            <div class="gameCont brown" id="uno">
+                <h1>Juego 1</h1>
+                <span></span>
+                <a href="/firstgame/{{ssid}}" class="gold">Jugar</a>
+            </div>
+            <div class="gameCont brown" id="dos">
+                <h1>Juego 2</h1>
+                <span></span>
+                <a href="" class="gold">Jugar</a>
+            </div>
+            <div class="gameCont brown" id="tres">
+                <h1>Juego 3</h1>
+                <span></span>
+                <a href="" class="gold">Jugar</a>
+            </div>
+        </div>
+        <div class="B">
+            <a href="/menu/{{ssid}}" class="gold">Volver</a>
+        </div>
+    </div>
+</body>
+</html>

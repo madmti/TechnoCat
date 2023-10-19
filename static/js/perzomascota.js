@@ -1,6 +1,6 @@
 const button = document.querySelector('button.edit');
 const img = document.querySelector('img.res');
-const h1 = document.querySelector('h1#petname');
+const h1 = document.querySelector('h1#petnameH1');
 const input = document.querySelector('input#petname');
 const body = document.querySelector('body');
 
@@ -21,6 +21,11 @@ document.addEventListener('submit', (e) => {
     e.preventDefault();
     body.className = 'gb';
     setTimeout(() => {
-        location.assign('/menu/1234');
+        e.target.submit();
     }, 1000);
 });
+
+const inptTipo = document.querySelector('input#tipo');
+const inptEstado = document.querySelector('input#estado');
+const h2Tipo = document.querySelector('h2#tipoH2');
+const h2Estado = document.querySelector('h2#estadoH2');

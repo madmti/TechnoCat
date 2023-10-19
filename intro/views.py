@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from api.views import validarSSID
+from api.views import validarSSID, getUserCR_CA_BySSID, getItems, procesarCompra
 
-
+# GENERAL
 def menu(req, ssid):
     isValid, auth = validarSSID(ssid)
     if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
@@ -27,6 +27,38 @@ def PerzoMascota(req, ssid):
     ctx = {
         'petName':'pedro',
         'tipo':'gato',
-        'estado':'normal'
+        'estado':'normal',
+        'ssid':ssid
     }
     return render(req, 'perzomascota.html', ctx)
+
+def tienda(req, ssid):
+    isValid, auth = validarSSID(ssid)
+    if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
+
+    if req.method == 'POST': procesarCompra(req.POST, ssid)
+
+    Items = getItems()
+    CR, CA = getUserCR_CA_BySSID(ssid)
+    ctx = {
+        'ssid':ssid,
+        'CAitems':Items['CA'],
+        'CRitems':Items['CR'],
+        'CA':CA,
+        'CR':CR
+        }
+    return render(req, 'tienda.html', ctx)
+
+# JUEGOS
+def selectGame(req, ssid):
+    isValid, auth = validarSSID(ssid)
+    if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
+    ctx = {'ssid':ssid}
+
+    return render(req, 'gameselect.html', ctx)
+
+def firstGame(req, ssid):
+    isValid, auth = validarSSID(ssid)
+    if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
+    ctx = {'ssid':ssid}
+    return render(req, 'firstgame.html', ctx)

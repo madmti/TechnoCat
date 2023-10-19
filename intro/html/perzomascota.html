@@ -8,15 +8,17 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="post">{% csrf_token %}
+    <form action="/api/updatePet/{{ssid}}" method="post">{% csrf_token %}
+        <input type="hidden" name="tipo" value="{{tipo}}" id="tipo">
+        <input type="hidden" name="estado" value="{{estado}}" id="estado">
         <section id="first">
             <div id="prev">
                 <span id="icon"></span>
             </div>
             <div id="name">
                 <div class="cont gold" id="name">
-                    <h1 id="petname">{{ petName }}</h1>
-                    <input id="petname" type="text" class="off" placeholder="Nombre">
+                    <h1 id="petnameH1">{{ petName }}</h1>
+                    <input id="petname" name="name" type="text" class="off" placeholder="Nombre">
                     <button class="edit" type="button">
                         {% load static %}
                         <img class="res" src="{% static 'img/editIcon.png' %}">
@@ -34,13 +36,13 @@
                 </div>
                 <div class="caja gold">
                     <div>
-                        <button type="button"><</button>
+                        <button type="button" id="L-tipo"><</button>
                     </div>
                     <div>
-                        <h2>{{tipo}}</h2>
+                        <h2 id="tipoH2">{{tipo}}</h2>
                     </div>
                     <div>
-                        <button type="button">></button>
+                        <button type="button" id="R-tipo">></button>
                     </div>
                 </div>
             </div>
@@ -52,19 +54,19 @@
                 </div>
                 <div class="caja gold">
                     <div>
-                        <button type="button"><</button>
+                        <button type="button" class="listen" id="L-estado"><</button>
                     </div>
                     <div>
-                        <h2>{{estado}}</h2>
+                        <h2 id="estadoH2">{{estado}}</h2>
                     </div>
                     <div>
-                        <button type="button">></button>
+                        <button type="button" class="listen" id="R-estado">></button>
                     </div>
                 </div>
             </div>
             <div id="C" class="let">
                 <input type="submit" value="Aplicar" class="gold">
-                <button type="button" class="gold">Cancelar</button>
+                <a href="/menu/{{ssid}}" class="gold">Cancelar</a>
             </div>
         </section>
     </form>

@@ -27,3 +27,8 @@ class UpdateForm(forms.Form):
     NBA = forms.IntegerField(label='NBA')
     CA = forms.IntegerField(label='CA')
     CR = forms.IntegerField(label='CR')
+
+class PetUpdateForm(forms.Form):
+    tipo = forms.CharField(label='tipo')
+    estado = forms.CharField(label='estado')
+    name = forms.CharField(label='name')

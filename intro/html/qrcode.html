@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <link href="{% static 'css/qrcode.css' %}" rel="stylesheet">
+    <link href="{% static 'css/showQr.css' %}" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
 
     <div class="container">
         <div id="UP">
-            <h1>USERNAME</h1>
+            <h1>{{username}}</h1>
         </div>
         <div id="C">
             {% autoescape off %}{{ svg }}{% endautoescape %}
         </div>
         <div id="BOT">
-            <button>Volver</button>
+            <a href="/menu/{{ssid}}">Volver</a>
         </div>
     </div>
 

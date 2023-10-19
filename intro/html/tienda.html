@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/shop.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title">
+                <h1>Tienda</h1>
+            </div>
+        </header>
+        <aside>
+            <div class="news">
+                <h1>Bienvenido a la tienda!</h1>
+                <p>Hola en la tienda</p>
+            </div>
+        </aside>
+        <main>
+            <div class="shop">
+                <div class="c">
+                    <h1>CA</h1>
+                    <span style="background-image: url(/static/img/example/ca.png);"></span>
+                    <h2>{{CA}}</h2>
+                </div>
+                <div class="line">
+                    {% for item in CAitems %}
+                    <div class="block">
+                        <form class="itemCont" method="post">{% csrf_token %}
+                            <input type="hidden" value="{{item.name}}" name="itemname"/>
+                            <div class="wrap">
+                                <h3>{{item.name}}</h3>
+                                <span style="background-image: url(/static/img/example/ca.png);"></span>
+                                <p>{{item.cost}}</p>
+                            </div>
+                            <span style="background-image: url({{item.img}});"></span>
+                            <button>Comprar</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="c">
+                    <h1>CR</h1>
+                    <span style="background-image: url(/static/img/example/cr.png);"></span>
+                    <h2>{{CR}}</h2>
+                </div>
+                <div class="line">
+                    {% for item in CRitems %}
+                    <div class="block">
+                        <form class="itemCont" method="post">{% csrf_token %}
+                            <input type="hidden" value="{{item.name}}" name="itemname"/>
+                            <div class="wrap">
+                                <h3>{{item.name}}</h3>
+                                <span style="background-image: url(/static/img/example/cr.png);"></span>
+                                <p>{{item.cost}}</p>
+                            </div>
+                            <span style="background-image: url({{item.img}});"></span>
+                            <button>Comprar</button>
+                        </form>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="foot">
+                <a href="/menu/{{ssid}}">Volver</a>
+            </div>
+            <div class="foot">
+                <a href="">foot 2</a>
+            </div>
+            <div class="foot">
+                <a href="">foot</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

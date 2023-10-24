@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/firstGame.css' %}">
     <title>Document</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="box">
+            <canvas></canvas>
+            <div style="display: none;">
+                {% load static %}
+                <img id="bg" src="{% static 'img/example/basement.png' %}">
+                {% load static %}
+                <img id="pet" src="{% static 'img/regular-cat/stand.png' %}">
+                {% load static %}
+                <img id="trash" src="{% static 'img/example/trash.png' %}">
+            </div>
+        </div>
+    </div>
+    {% load static %}
+    <script src="{% static 'js/firstGame.js' %}"></script>
 </body>
 </html>

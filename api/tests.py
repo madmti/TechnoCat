@@ -1,37 +1,30 @@
-from django.test import TestCase
-# TESTS
-'''def testAuthLevel():
-    print('-------- AuthLevel -------\n')
-    user = 'example.user'
-    AuthLevelKey = generateAuthKey(user, 0)
-    print(f'({user})seed --> {AUTHLEVELKEYS["USER_LEVEL_KEY"]}\nAuthKey --> {AuthLevelKey}\n')
-    res, AuthLevel = validarAuthKey(user, AuthLevelKey)
-    print(f'validation {res}\nvalidationLevel {AuthLevel}')
+import bcrypt
+import os
+from dotenv import load_dotenv
+load_dotenv()
+# SECRET KEYS
+SALT_KEY = os.getenv('SALT_KEY').encode()
+AUTHLEVELKEYS = {
+    'USER_LEVEL_KEY': os.getenv('USER_LEVEL_KEY').encode(),
+    'SUPER_LEVEL_KEY': os.getenv('SUPER_LEVEL_KEY').encode(),
+}
 
-    print('---------- END ----------')
+def generateAuthKey(user:str, authlevel:int) -> bytes:
+    key = 'USER_LEVEL_KEY' if authlevel == 0 else 'SUPER_LEVEL_KEY'
+    forHash = (bcrypt.gensalt(12).decode()+user).encode()
+    auhtKey = bcrypt.hashpw(AUTHLEVELKEYS[key], forHash)
+    return auhtKey
 
-def testJWT():
-    print('-------- TEST JWT --------\n')
-    user = 'example.user'
-    ssid = createSSID(user)
-    print(f'({user})seed --> {SALT_KEY}\nSSID --> {ssid}\n')
+def validarAuthKey(AuthKey:bytes) -> list:
+    isValidUser = bcrypt.checkpw(AUTHLEVELKEYS['USER_LEVEL_KEY'], AuthKey)
+    isValidAdmin = bcrypt.checkpw(AUTHLEVELKEYS['SUPER_LEVEL_KEY'], AuthKey)
+    isValid = isValidAdmin or isValidUser
+    return [isValid, int(isValidAdmin)]
 
-    res = validarSSID(ssid)
-    print(f'payload {res}\n')
-    print('---------- END ----------')
-def generalTest(user):
-    print('-------- GENERAL TEST --------\n')
+# proxima actualizacion
 
-    # USER VIEW
-    ssid = createSSID(user)
-    print(f'user: {user}\nGEN ssid: {ssid}')
-
-    # SERVER VIEW
-    validation, authLevel = validarSSID(ssid)
-    print(f'validation: {validation}\nAuthLevel: {authLevel}')
-    print('---------- END ----------')
-
-os.system('cls')
-user = 'user.ejemplo'
-generalTest(user)
-'''
+user = 'example.usera'
+key = generateAuthKey(user, 1)
+validacion = validarAuthKey(key)
+print(key)
+print(validacion)

@@ -80,16 +80,17 @@ def findUserAuthLevel(user:str) -> int:
 def generateAuthKey(user:str, authlevel:int) -> bytes:
     '''user -> email ; authlevel -> is_superuser
     Retorna el nombre de usuario hasheado por una clave que le asigna el nivel de autorizacion'''
-    userEncode = user.encode()
     key = 'USER_LEVEL_KEY' if authlevel == 0 else 'SUPER_LEVEL_KEY'
-    AuthKey = bcrypt.hashpw(userEncode, AUTHLEVELKEYS[key])
-    return AuthKey
+    forHash = (bcrypt.gensalt(12).decode()+user).encode()
+    auhtKey = bcrypt.hashpw(AUTHLEVELKEYS[key], forHash)
+    return auhtKey
 
-def validarAuthKey(user:str, AuthKey:bytes) -> list:
-    userEncode = user.encode()
-    isValid = bcrypt.checkpw(userEncode, AuthKey)
-    AuthLevel = findUserAuthLevel(user)
-    return [isValid, AuthLevel]
+def validarAuthKey(AuthKey:bytes) -> list:
+    isValidUser = bcrypt.checkpw(AUTHLEVELKEYS['USER_LEVEL_KEY'], AuthKey)
+    isValidAdmin = bcrypt.checkpw(AUTHLEVELKEYS['SUPER_LEVEL_KEY'], AuthKey)
+    isValid = isValidAdmin or isValidUser
+    return [isValid, int(isValidAdmin)]
+
 
 def getUserIDBySSID(ssid:str) -> tuple[int, str]:
     res = jwt.decode(
@@ -166,7 +167,7 @@ def validarSSID(ssid) -> list:
             SALT_KEY,
             "HS256"
         )
-        info = validarAuthKey(res['user'], res['auth'].encode())
+        info = validarAuthKey(res['auth'].encode())
     except: info = [False, 0]
     return info
 

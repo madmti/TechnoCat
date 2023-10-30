@@ -25,7 +25,27 @@ document.addEventListener('submit', (e) => {
     }, 1000);
 });
 
-const inptTipo = document.querySelector('input#tipo');
-const inptEstado = document.querySelector('input#estado');
-const h2Tipo = document.querySelector('h2#tipoH2');
-const h2Estado = document.querySelector('h2#estadoH2');
+
+const Inpts = {
+    'tipo':document.querySelector('input#tipo'),
+    'estado':document.querySelector('input#estado')
+}
+const H2s = {
+    'tipo':document.querySelector('h2#tipoH2'),
+    'estado':document.querySelector('h2#estadoH2')
+}
+const Botones = document.querySelectorAll('button.listen');
+Botones.forEach((el) => {
+    el.addEventListener('click', (ev) => {
+        const [ side, field ] = ev.target.id.split('-');
+        const datalist = Array.from(document.querySelector(`datalist#${field}s`).children).map((ele) => ele.value);
+        const actual = datalist.indexOf(H2s[field].innerHTML);
+        const newIdx = side === 'R'
+            ? actual < datalist.length - 1
+                ? actual + 1
+                : 0
+            : actual - 1;
+        Inpts[field].value = datalist[newIdx];
+        H2s[field].innerHTML = datalist[newIdx];
+    });
+});

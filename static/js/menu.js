@@ -4,5 +4,5 @@ const keepCreds = async () => {
     res?window.localStorage.setItem('creds', cred):0;
 };
 
-window.localStorage.getItem('creds')?0:keepCreds();
-
+window.localStorage.getItem('creds') || window.sessionStorage.getItem('whMenu')?0:keepCreds();
+window.sessionStorage.setItem('whMenu', true);

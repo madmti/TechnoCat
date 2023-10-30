@@ -11,6 +11,16 @@
     <form action="/api/updatePet/{{ssid}}" method="post">{% csrf_token %}
         <input type="hidden" name="tipo" value="{{tipo}}" id="tipo">
         <input type="hidden" name="estado" value="{{estado}}" id="estado">
+        <datalist id="tipos" style="display: none;">
+            {% for tipos in tipoList %}
+                <option value={{tipos}}></option>
+            {% endfor %}
+        </datalist>
+        <datalist id="estados" style="display: none;">
+            {% for estados in estadoList %}
+                <option value={{estados}}></option>
+            {% endfor %}
+        </datalist>
         <section id="first">
             <div id="prev">
                 <span id="icon"></span>
@@ -36,13 +46,13 @@
                 </div>
                 <div class="caja gold">
                     <div>
-                        <button type="button" id="L-tipo"><</button>
+                        <button type="button" class="listen" id="L-tipo"><</button>
                     </div>
                     <div>
                         <h2 id="tipoH2">{{tipo}}</h2>
                     </div>
                     <div>
-                        <button type="button" id="R-tipo">></button>
+                        <button type="button" class="listen" id="R-tipo">></button>
                     </div>
                 </div>
             </div>

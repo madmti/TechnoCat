@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+
+body, html {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Lobster', cursive;
+    display: grid;
+    place-items: center;
+
+
+    letter-spacing: 0.2em;
+    font-size: 1.5em;
+}
+
+
+div.back{
+    height: 100%;
+    width: 100%;
+    background-color: #e1f4f8;
+
+    display: grid;
+    grid-template-rows: 2fr 5fr 3fr;
+}
+div.back div{
+    display: grid;
+    place-items: center;
+    outline: solid 0.2em red;
+}
+
+div.cont{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+div.U{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+}
+
+div.B{
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+section{
+    margin: 1em;
+    height: 20%;
+    width: 20%;
+    min-width: 5em;
+    color: black;
+    background-color: #dab4a2;
+    border: solid 0.1em #c29987;
+    outline: solid 0.2em #835142;
+    border-radius: 1em;
+
+    display: grid;
+    place-items: center;
+}
+section a {
+    display: flex;
+    color: black;
+    text-decoration: none;
+    height: 100%;
+    width: 100%;
+    border-radius: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+div.pet{
+    position: absolute;
+    height: 50%;
+    width: 20%;
+    min-width: 10em;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    transform: translate(0, 20%);
+    place-items: center;
+}
+
+div.pet div{
+    display: grid;
+    place-items: center;
+    text-transform: capitalize;
+}
+
+div.pet div#img img {
+    object-fit: contain;
+    width: 60%;
+    height: 60%;
+}
+#name{
+    background-color: #fff1d4;
+    border: solid 0.1em #ffd981;
+    outline: solid 0.1em #caad65;
+    border-radius: 2em;
+    position: absolute;
+    top: 10%;
+    padding: 0em 0.5em;
+}
+#img{
+    max-height: 90%;
+    width: 100%;
+}

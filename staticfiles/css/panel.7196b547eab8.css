@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@media only screen and (min-width: 573px) {
+  body {
+    background-size: cover;
+  }
+}
+@media only screen and (max-width: 573px) {
+  body {
+    background-size: contain;
+  }
+}
+div.container, html, body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "Lobster", cursive;
+}
+
+body {
+  background-image: url("/static/img/LandingBack.4566d674dca9.jpg");
+  background-position: center;
+  background-repeat: repeat-y;
+}
+
+div.container {
+  display: grid;
+  place-items: center;
+  grid-template-rows: 3fr 3fr 1fr;
+}
+
+a {
+  text-decoration: none;
+  width: 50%;
+  max-width: 20vh;
+  min-width: 200px;
+  aspect-ratio: 2;
+  color: black;
+  display: grid;
+  place-items: center;
+  font-size: larger;
+}
+
+.gold {
+  background-color: #fff1d4;
+  border: solid 0.7em #ffd981;
+  outline: solid 0.2em #caad65;
+  border-radius: 2em;
+}
+
+h2 {
+  user-select: none;
+}
+
+/*# sourceMappingURL=panel.css.df766e841ba3.map */

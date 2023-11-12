@@ -37,6 +37,8 @@ urlpatterns = [
     path('perzomascota/<str:ssid>', PerzoMascota),
     path('api/qr/<str:ssid>', QrCode),
     path('tienda/<str:ssid>', tienda),
+    path('help/', help),
+    path('about/', about),
         #-- juegos
         path('gameselect/<str:ssid>', selectGame),
         path('firstgame/<str:ssid>', firstGame),

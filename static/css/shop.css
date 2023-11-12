@@ -4,10 +4,13 @@
     background-size: cover;
   }
   [class=container] {
-    grid-template-areas: "h h h h h h" "a m m m m m" "a m m m m m" "f f f f f f";
+    grid-template-areas: "h h h h h h h h h h" "a m m m m m m m m m" "a m m m m m m m m m" "f f f f f f f f f f";
   }
   aside {
     display: grid;
+  }
+  footer a {
+    font-size: 1.8em;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -20,6 +23,9 @@
   }
   aside {
     display: none;
+  }
+  footer a {
+    font-size: 1.2em;
   }
 }
 div.container, html, body {
@@ -54,21 +60,40 @@ div.container header .title {
 }
 div.container aside {
   grid-area: a;
-  padding: 1em;
+  padding-left: 1em;
+  max-width: 28rem;
 }
 div.container aside .news {
   display: grid;
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: 1fr 1fr 1fr;
   background-color: #dab4a2;
   border: solid 0.2em #c29987;
   outline: solid 0.4em #835142;
   border-radius: 1em;
+  overflow: hidden;
+  font-size: 1.2em;
+}
+div.container aside .news * {
+  max-width: 20rem;
 }
 div.container aside .news h1 {
+  max-width: 20rem;
   place-self: center;
+  font-size: 1.5em;
 }
-div.container aside .news p {
+div.container aside .news p, div.container aside .news h3 {
+  width: 95%;
+  margin: 0.2em;
   margin-left: 1em;
+}
+div.container aside .news h3 {
+  font-size: 1.1em;
+}
+div.container aside .news div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
 }
 div.container main {
   grid-area: m;
@@ -190,6 +215,10 @@ a {
   margin: 0;
   display: grid;
   place-items: center;
+}
+
+strong {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 /*# sourceMappingURL=shop.css.map */

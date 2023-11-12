@@ -10,6 +10,7 @@ import qrcode.image.svg
 from io import BytesIO
 import jwt
 import bcrypt
+import json
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -126,13 +127,33 @@ def procesarCompra(POST, ssid):
         'Items':item
     })
 
+def getUserDataBySSID(ssid):
+    '''retorna el modelo (UserData, PetData)'''
+    res = jwt.decode(
+        ssid,
+        SALT_KEY,
+        "HS256"
+    )
+    userData = UserData.objects.get(email=res['user'])
+    return ( userData, userData.PetInfo )
+
 def updatePet(req, ssid):
     isValid, auth = validarSSID(ssid)
     if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
-    # Validar form y aplicar cambios
-
+    if req.method != 'POST': redirect('/msg/metodo_no_valido')
+    queryDict = req.POST
+    user, _ = getUserDataBySSID (ssid)
+    if queryDict['name']: name = queryDict['name']
+    else: name = user.PetInfo['name']
+    user.updateFromDict({
+        'PetInfo':{
+            'name':name,
+            'tipo':queryDict['tipo'],
+            'estado':queryDict['estado']
+        }
+    })
     return redirect(f'/menu/{ssid}')
-    
+
 
 def getItems():
     '''Retorna una diccionario de listas {"CA":[], "CR":[]}

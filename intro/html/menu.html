@@ -10,18 +10,18 @@
 <body>
     <div class="back">
         <div class="top">
-            Cielo Cielo Cielo
+            
         </div>
         <div class="mid">
-            Alrededor Alrededor Alrededor
+            
         </div>
         <div class="bot">
-            Suelo Suelo Suelo
+            
         </div>
     </div>
     <div class="cont">
         <div class="U">
-            <section><a href="/tienda/{{ssid}}">Monedas / Tienda</a></section>
+            <section><a href="/tienda/{{ssid}}">Tienda</a></section>
             <section><a href="/perzomascota/{{ssid}}">Personalizar</a></section>
         </div>
         <div class="B">
@@ -30,8 +30,11 @@
         </div>
     </div>
     <div class="pet">
-        <div id="name">PetName</div>
-        <div id="img">PetImage</div>
+        <div id="name">{{PetInfo.name}}</div>
+        <div></div>
+        <div id="img">
+            <img src="/static/img/cat/{{petUrlImg}}">
+        </div>
     </div>
     {% load static %}
     <script src="{% static 'js/menu.js' %}"></script>

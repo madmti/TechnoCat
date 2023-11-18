@@ -10,8 +10,7 @@ RUN apk update \
 
 COPY ./requirements.txt ./
 
-RUN pip install -r requirements.txt && pip install -U "bcrypt<4.0.0"
-
+RUN pip install -r requirements.txt
 COPY ./ ./
 
 CMD [ "sh", "entrypoint.sh" ]

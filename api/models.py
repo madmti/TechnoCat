@@ -8,7 +8,7 @@ class UserData(models.Model):
     CA = models.IntegerField(default=0) # Credito ambiental
     NBA = models.IntegerField(default=0) #Nivel de Bienestar del Abmiente
     CR = models.IntegerField(default=0) #Credito Real
-    Items = models.CharField(default='{}',max_length=9999)
+    Items = models.JSONField(default='{}',max_length=9999)
 
     def updateFromDict(self, data:dict) -> str:
         '''
@@ -24,10 +24,8 @@ class UserData(models.Model):
         if 'CR' in fields and self.CR >= -data['CR']: self.CR += data['CR']
         if 'PetInfo' in fields: self.PetInfo = data['PetInfo']
         if 'Items' in fields and ( ('CR' in fields and self.CR >= -data['CR']) or ('CA' in fields and self.CA >= -data['CA']) ):
-            temp = json.loads(self.Items)
-            if data['Items'] not in temp: temp[data['Items']] = 1
-            else: temp[data['Items']] += 1
-            self.Items = json.dumps(temp)
+            if data['Items'] not in self.Items: self.Items[data['Items']] = 1
+            else: self.Items[data['Items']] += 1
         try: 
             self.save()
             return 'Actualizacion exitosa!'

@@ -32,6 +32,16 @@
     <div class="pet">
         <div id="name">{{PetInfo.name}}</div>
         <div></div>
+        <span id="iContCA">
+            {% for item in items.CA %}
+                <span class="img" style="background-image: url({{item}});"></span>
+            {% endfor %}
+        </span>
+        <span id="iContCR">
+            {% for item in items.CR %}
+                <span class="img" style="background-image: url({{item}});"></span>
+            {% endfor %}
+        </span>
         <div id="img">
             <img src="/static/img/cat/{{petUrlImg}}">
         </div>

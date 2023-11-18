@@ -92,6 +92,16 @@ def validarAuthKey(AuthKey:bytes) -> list:
     isValid = isValidAdmin or isValidUser
     return [isValid, int(isValidAdmin)]
 
+def ItemlistFromDict(d):
+    lCA = list()
+    lCR = list()
+    keys = d.items()
+    for item in keys:
+        for _ in range(item[1]): 
+            i = Item.objects.get(name=item[0])
+            if i.tipo == 'CA': lCA.append(i.img)
+            else: lCR.append(i.img)
+    return { 'CA':lCA, 'CR':lCR }
 
 def getUserIDBySSID(ssid:str) -> tuple[int, str]:
     res = jwt.decode(
@@ -135,14 +145,14 @@ def getUserDataBySSID(ssid):
         "HS256"
     )
     userData = UserData.objects.get(email=res['user'])
-    return ( userData, userData.PetInfo )
+    return ( userData, userData.PetInfo, userData.Items )
 
 def updatePet(req, ssid):
     isValid, auth = validarSSID(ssid)
     if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
     if req.method != 'POST': redirect('/msg/metodo_no_valido')
     queryDict = req.POST
-    user, _ = getUserDataBySSID (ssid)
+    user, _, _ = getUserDataBySSID (ssid)
     if queryDict['name']: name = queryDict['name']
     else: name = user.PetInfo['name']
     user.updateFromDict({

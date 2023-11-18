@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from api.views import validarSSID, getUserCR_CA_BySSID, getItems, procesarCompra, getUserDataBySSID
+from api.views import validarSSID, getUserCR_CA_BySSID, getItems, procesarCompra, getUserDataBySSID, ItemlistFromDict
 # File Image Data
 ESTADOS = [
     'negro',
@@ -46,11 +46,12 @@ def landing(req, msg=''):
 def menu(req, ssid):
     isValid, auth = validarSSID(ssid)
     if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
-    _, petInfo = getUserDataBySSID(ssid)
+    _, petInfo, itemsInfo = getUserDataBySSID(ssid)
     ctx = {
         'ssid':ssid,
         'PetInfo':petInfo,
-        'petUrlImg':f'{TRAD[petInfo["estado"]]}/{TRAD[petInfo["tipo"]]}.png'
+        'petUrlImg':f'{TRAD[petInfo["estado"]]}/{TRAD[petInfo["tipo"]]}.png',
+        'items':ItemlistFromDict(itemsInfo)
     }
     return render( req, 'menu.html', ctx )
 
@@ -65,7 +66,7 @@ def panel(req, ssid, msg=''):
 def PerzoMascota(req, ssid):
     isValid, auth = validarSSID(ssid)
     if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
-    ( _, PetData ) = getUserDataBySSID(ssid)
+    _, PetData, _  = getUserDataBySSID(ssid)
     ctx = {
         'petName':PetData['name'],
         'tipo':PetData['tipo'],

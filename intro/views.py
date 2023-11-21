@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from api.views import validarSSID, getUserCR_CA_BySSID, getItems, procesarCompra, getUserDataBySSID, ItemlistFromDict
+from api.models import LeaderBoard
 # File Image Data
 ESTADOS = [
     'negro',
@@ -116,5 +117,10 @@ def selectGame(req, ssid):
 def firstGame(req, ssid):
     isValid, auth = validarSSID(ssid)
     if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
-    ctx = {'ssid':ssid}
+    user, PetData, _  = getUserDataBySSID(ssid)
+    ctx = {
+        'ssid':ssid,
+        'imgUrl':f'img/cat/{TRAD[PetData["estado"]]}/{TRAD[PetData["tipo"]]}.png',
+        'records':LeaderBoard.get_Top()
+        }
     return render(req, 'firstgame.html', ctx)

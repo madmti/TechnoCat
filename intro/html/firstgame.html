@@ -5,17 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/firstGame.css' %}">
-    <title>Document</title>
+    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'img/example/trash.png' %}">
+    <title>Trash Fall</title>
 </head>
 <body>
     <div class="container">
         <div class="box">
+            <div class="top">
+                <h2 class="title gold">
+                    TRASH FALL 0.1
+                </h2>
+                <p class="score gold">
+                    Recompensa:
+                    <small>0</small>
+                    {% load static %}
+                    <img height="20" width="20" src="{% static 'img/credit/ca.png' %}" alt="">
+                </p>
+                <p class="time gold">
+                    Tiempo
+                    <small>0</small>[s]
+                </p>
+                <p class="record gold">
+                    <small>TOP SCORE</small>
+                    {% for rec in records %}
+                        <small>
+                            {{rec.name}} - {{rec.seg}} [s]
+                        </small>
+                    {% endfor %}
+                </p>
+                <a href="/gameselect/{{ssid}}" class="gold" id="volver">Volver</a>
+                <form action="/api/recompensa/{{ssid}}" method="post" class="gold">{% csrf_token %}
+                    <h1>Juego Terminado</h1>
+                    <a href="/firstgame/{{ssid}}">Volver a intentar</a>
+                    <small>o</small>
+                    <input type="hidden" name="CA" id="CA"/>
+                    <input type="hidden" name="time" id="Time"/>
+                    <input type="hidden" name="ssid" value="{{ssid}}"/>
+                    <button type="submit">Reclamar Recompensa / Record</button>
+                </form>
+            </div>
             <canvas></canvas>
             <div style="display: none;">
                 {% load static %}
                 <img id="bg" src="{% static 'img/example/basement.png' %}">
                 {% load static %}
-                <img id="pet" src="{% static 'img/regular-cat/stand.png' %}">
+                <img id="pet" src="{% static imgUrl %}">
                 {% load static %}
                 <img id="trash" src="{% static 'img/example/trash.png' %}">
             </div>

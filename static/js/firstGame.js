@@ -41,6 +41,7 @@ class Player{
             y: Math.floor( canvas.height - this.size ),
         };
         this.vel = canvas.width / 100;
+        this.alive = true;
     };
     draw(ctx){
         ctx.drawImage(
@@ -48,9 +49,9 @@ class Player{
             0,0,
             this.img.width,
             this.img.height,
-            this.pos.x,this.pos.y,
-            this.size,
-            this.size,
+            this.pos.x - 2.5,this.pos.y - 2.5,
+            this.size + 5,
+            this.size + 5,
         );
     };
     update(){
@@ -60,6 +61,7 @@ class Player{
     };
     die(){
         this.vel = 0;
+        this.alive = false;
     };
     toggle(){
         this.vel *= -1;
@@ -118,7 +120,19 @@ const ctx = canvas.getContext('2d');
 const bg = document.querySelector('img#bg');
 const pet = document.querySelector('img#pet');
 const trash = document.querySelector('img#trash');
-
+const timeSmall = document.querySelector('p.time small');
+const caSmall = document.querySelector('p.score small');
+const inputCa = document.querySelector('input#CA');
+const inputTime = document.querySelector('input#Time');
+const formOver = document.querySelector('div.top form');
+const timeCA = {
+    delta:0,
+    last:0,
+    real:0,
+    timer:0,
+    ca:0,
+    onGame:true
+};
 const AllowKeys = ['h', ' '];
 const MaxSize = 100;
 const RelSize = 10;
@@ -151,13 +165,34 @@ const update = () => {
     Generadores.forEach((gene) => { gene.OBJS.forEach((el) => { el.update( HurtBox, gene.OBJS ) }) });
 };
 
+const timeManager = (time) => {
+    timeCA.delta = time - timeCA.last;
+    timeCA.last = time;
+    timeCA.real = Math.floor(time);
+    if(timeCA.timer >= 5000){ timeCA.ca += 1; timeCA.timer = 0 } else {timeCA.timer += timeCA.delta};
+    caSmall.innerHTML = timeCA.ca;
+    timeSmall.innerHTML = Math.floor(timeCA.real / 1000);
+}
+
+const gameOver = () => {
+    formOver.style.display = "flex";
+    setTimeout(() => { timeCA.onGame = false; }, 500);
+};
+
 // MAIN LOOP
 const GameLoop = ( time = 0 ) => {
+    HurtBox.alive ?timeManager(time):gameOver();
     Generadores.forEach((gene) => { gene.addTime(time) });
     clear();
     draw();
     update();
-    requestAnimationFrame( GameLoop );
+    timeCA.onGame
+        ?requestAnimationFrame( GameLoop ):0;
+};
+const dontTryToHACKTHEGAME = () => {
+    inputCa.value = timeCA.ca;
+    inputTime.value = Math.floor(timeCA.real / 1000);
+    requestAnimationFrame( dontTryToHACKTHEGAME );
 };
 
 // CONTROLES
@@ -169,3 +204,4 @@ document.addEventListener('click', () => {
 });
 
 GameLoop();
+dontTryToHACKTHEGAME();

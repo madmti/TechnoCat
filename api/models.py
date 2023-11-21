@@ -8,7 +8,7 @@ class UserData(models.Model):
     CA = models.IntegerField(default=0) # Credito ambiental
     NBA = models.IntegerField(default=0) #Nivel de Bienestar del Abmiente
     CR = models.IntegerField(default=0) #Credito Real
-    Items = models.JSONField(default='{}',max_length=9999)
+    Items = models.JSONField(default=dict,max_length=9999)
 
     def updateFromDict(self, data:dict) -> str:
         '''
@@ -46,3 +46,20 @@ class Item(models.Model):
             'img':self.img,
             'tipo':self.tipo
         }
+
+class LeaderBoard(models.Model):
+    name = models.CharField(max_length=20, null=False)
+    seg = models.IntegerField(default=0, null=False)
+
+    def get_Top():
+        Objs = LeaderBoard.objects.all().order_by('seg').reverse()
+        if len(Objs) <= 5: return Objs
+        return Objs[:5]
+
+    def checkNewScore(name, score):
+        try:user = LeaderBoard.objects.get(name=name)
+        except:user = LeaderBoard(name=name)
+        if user.seg >= int(score): return
+        user.seg = int(score)
+        user.save()
+        

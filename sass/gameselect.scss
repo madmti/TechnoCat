@@ -68,6 +68,10 @@ div.container{
             display: grid;
             grid-template-rows: 1fr 3fr 1fr;
         }
+        & div.gameCont:hover{
+            box-shadow: 0 0 2em black;
+            transition: all 200ms ease-in-out;
+        }
     }
 }
 
@@ -75,6 +79,10 @@ a{
     text-decoration: none;
     color: black;
     padding: 0 1em;
+    transition: all 200ms ease-in-out;
+}
+a:hover{
+    padding: 0.2em 1.2em;
 }
 
 .gold{
@@ -88,4 +96,10 @@ a{
     border: solid 0.2em #c29987;
     outline: solid 0.4em #835142;
     border-radius: 1em;
+}
+h1{
+    font-size: 3em;
+}
+span{
+    font-size: 2em;
 }

@@ -21,8 +21,8 @@ div.box {
   display: flex;
   align-items: start;
   justify-content: start;
-  height: 90%;
-  width: 90%;
+  height: 80%;
+  width: 80%;
   outline: solid 0.2em black;
 }
 
@@ -31,8 +31,105 @@ canvas {
   width: 100%;
 }
 
-span#Player {
-  outline: blue 0.2em solid;
+div.top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+div.top a#volver {
+  position: absolute;
+  bottom: 1em;
+  left: 1em;
+  padding: 0 1em;
+  text-decoration: none;
+  color: black;
+  user-select: none;
+}
+div.top p.score {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.top p.time {
+  position: absolute;
+  top: 7em;
+  left: 1em;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+div.top h2.title {
+  position: absolute;
+  top: 0.2em;
+  right: 1em;
+  padding: 0.2em 0.5em;
+}
+div.top p.record {
+  position: absolute;
+  top: 14em;
+  left: 1em;
+  padding: 0.6em;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+div.top p.record small {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+div.top p.record small:first-child {
+  margin-bottom: 0.3em;
+  text-decoration: underline;
+}
+div.top small {
+  margin: 0 0.5em;
+  font-weight: 1000;
+  font-size: 1em;
+}
+div.top form {
+  display: none;
+  position: absolute;
+  height: 200px;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+div.top form a, div.top form button {
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: #dab4a2;
+  border: solid 0.2em #c29987;
+  outline: solid 0.4em #835142;
+  text-decoration: none;
+  padding: 0.2em 0.5em;
+  border-radius: 0.5em;
+  color: black;
+  margin: 0.5em 0;
+}
+
+.gold {
+  background-color: #fff1d4;
+  border: solid 0.4em #ffd981;
+  outline: solid 0.2em #caad65;
+  border-radius: 2em;
+}
+
+* {
+  user-select: none;
 }
 
 /*# sourceMappingURL=firstGame.css.map */

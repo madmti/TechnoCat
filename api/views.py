@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import LogRegForm, UpdateForm
-from .models import UserData, Item
+from .models import UserData, Item, LeaderBoard
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 import datetime
@@ -138,7 +138,7 @@ def procesarCompra(POST, ssid):
     })
 
 def getUserDataBySSID(ssid):
-    '''retorna el modelo (UserData, PetData)'''
+    '''retorna el modelo (UserData, PetData, ItemsData)'''
     res = jwt.decode(
         ssid,
         SALT_KEY,
@@ -210,6 +210,16 @@ def validarCred(req):
 
     return (redirect('/menu/%s'%cred) if not auth else redirect('/panel/%s'%cred))
 
+
+def recompensas(req, ssid):
+    isValid, auth = validarSSID(ssid)
+    if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
+    if req.method != 'POST':return redirect('/msg/metodo_no_valido')
+    user, _, _ = getUserDataBySSID(req.POST['ssid'])
+    LeaderBoard.checkNewScore(user.email.split('@')[0], req.POST['time'])
+    if int(req.POST['CA']) != 0:user.updateFromDict({'CA': int(req.POST['CA'])})
+
+    return redirect(f'/gameselect/{ssid}')
 
 # VIEWS.
 def validarForm(req):

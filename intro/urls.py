@@ -31,6 +31,7 @@ urlpatterns = [
     path('api/update/<str:ssid>', UpdateUser),
     path('api/validateCREDS/', validarCred),
     path('api/updatePet/<str:ssid>', updatePet),
+    path('api/recompensa/<str:ssid>', recompensas),
 
     #User Views
     path('', landing, name='landing'),

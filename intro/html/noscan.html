@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="/api/update/{{ssid}}" method="POST">{% csrf_token %}
+        <form id="f" action="/api/update/{{ssid}}" method="POST">{% csrf_token %}
             <input type="hidden" name="isScan" value="0">
             <input type="hidden" name="userID" value="-1">
             <div class="inputField">
@@ -29,6 +29,10 @@
             <div class="inputField">
                 <label for="CR">Credito Real</label>
                 <input type="number" name="CR" id="CR" value="0" min="0"/>
+            </div>
+            <div id="d3">
+                <label for="d3">Reclamar Impresion</label>
+                <input type="checkbox" name="d3" id="d3"/>
             </div>
             <div class="submit">
                 <input type="submit">

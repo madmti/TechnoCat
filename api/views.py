@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .forms import LogRegForm, UpdateForm
 from .models import UserData, Item, LeaderBoard
 from django.contrib.auth.models import User
@@ -10,7 +9,6 @@ import qrcode.image.svg
 from io import BytesIO
 import jwt
 import bcrypt
-import json
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -44,6 +42,7 @@ def NoQrForm(req, ssid):
     if not (isValid and auth): return redirect('/msg/la_sesion_ya_no_es_valida')
     ctx = {'ssid':ssid}
     return render(req, 'noscan.html', ctx)
+    
 
 def UpdateUser(req, ssid):
     isValid, auth = validarSSID(ssid)
@@ -135,7 +134,7 @@ def procesarCompra(POST, ssid):
     user.updateFromDict({
         dbItem.tipo: - dbItem.cost,
         'Items':dbItem,
-        'NBA':dbItem.nba
+        'NBA':dbItem.nba,
     })
 
 def getUserDataBySSID(ssid):

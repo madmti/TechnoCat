@@ -10,6 +10,15 @@ class UserData(models.Model):
     CR = models.IntegerField(default=0) #Credito Real
     Items = models.JSONField(default=dict,max_length=9999)
 
+    def canjeD3(self):
+        if self.Items['Impresion 3D'] <= 0: return
+        elif self.Items['Impresion 3D'] == 1: self.Items.pop('Impresion 3D')
+        else: self.Items['Impresion 3D'] -= 1
+
+        try: self.save()
+        except: return
+
+
     def updateFromDict(self, data:dict) -> str:
         '''
         NBA -> int\n
@@ -26,6 +35,7 @@ class UserData(models.Model):
         if 'Items' in fields and ( ('CR' in fields and self.CR >= -data['CR']) or ('CA' in fields and self.CA >= -data['CA']) ):
             if data['Items'].name not in self.Items: self.Items[data['Items'].name] = 1
             elif data['Items'].nba == 0: self.Items[data['Items'].name] += 1
+        if 'd3' in fields: self.canjeD3()
         try: 
             self.save()
             return 'Actualizacion exitosa!'
@@ -39,7 +49,7 @@ class Item(models.Model):
     img = models.CharField(max_length=100,default='/static/img/example/item.png')
     tipo = models.CharField(max_length=2, default='CA')
     nba = models.IntegerField(default=0, null=False)
-    
+
     def get_clean(self):
         return {
             'name':self.name,

@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="/api/update/{{ssid}}" method="POST" class="h">{% csrf_token %}
+        <form id="f" action="/api/update/{{ssid}}" method="POST" class="h">{% csrf_token %}
             <input type="hidden" name="isScan" value="1">
             <input type="hidden" name="email" value="noemail@value.cl">
             <input type="hidden" name="userID" id="ID">
@@ -29,6 +29,10 @@
             </div>
             <div class="submit">
                 <input type="submit">
+            </div>
+            <div id="d3">
+                <label for="d3">Reclamar Impresion</label>
+                <input type="checkbox" name="d3" id="d3"/>
             </div>
         </form>
         <div id="reader" class="">a</div>

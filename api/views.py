@@ -131,10 +131,11 @@ def procesarCompra(POST, ssid):
         "HS256"
     )
     user = UserData.objects.get(email=res['user'])
-    dbItem = Item.objects.get(name=item)
+    dbItem = Item.objects.get(name=item)        
     user.updateFromDict({
         dbItem.tipo: - dbItem.cost,
-        'Items':item
+        'Items':dbItem,
+        'NBA':dbItem.nba
     })
 
 def getUserDataBySSID(ssid):

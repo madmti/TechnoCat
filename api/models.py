@@ -19,13 +19,13 @@ class UserData(models.Model):
         Items -> str\n
         '''
         fields = list(data.keys())
-        if 'NBA' in fields: self.NBA += data['NBA']
+        if ('NBA' in fields) and (self.NBA >= -data['NBA']): self.NBA += data['NBA']
         if 'CA' in fields and self.CA >= -data['CA']: self.CA += data['CA']
         if 'CR' in fields and self.CR >= -data['CR']: self.CR += data['CR']
         if 'PetInfo' in fields: self.PetInfo = data['PetInfo']
         if 'Items' in fields and ( ('CR' in fields and self.CR >= -data['CR']) or ('CA' in fields and self.CA >= -data['CA']) ):
-            if data['Items'] not in self.Items: self.Items[data['Items']] = 1
-            else: self.Items[data['Items']] += 1
+            if data['Items'].name not in self.Items: self.Items[data['Items'].name] = 1
+            elif data['Items'].nba == 0: self.Items[data['Items'].name] += 1
         try: 
             self.save()
             return 'Actualizacion exitosa!'
@@ -38,6 +38,7 @@ class Item(models.Model):
     cost = models.IntegerField(default=0, null=False)
     img = models.CharField(max_length=100,default='/static/img/example/item.png')
     tipo = models.CharField(max_length=2, default='CA')
+    nba = models.IntegerField(default=0, null=False)
     
     def get_clean(self):
         return {

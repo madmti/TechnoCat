@@ -14,21 +14,6 @@ body, html {
     font-size: 1.5em;
 }
 
-
-div.back{
-    height: 100%;
-    width: 100%;
-    background-color: #e1f4f8;
-
-    display: grid;
-    grid-template-rows: 2fr 5fr 3fr;
-}
-div.back div{
-    display: grid;
-    place-items: center;
-    outline: solid 0.2em red;
-}
-
 div.cont{
     height: 100%;
     width: 100%;
@@ -112,31 +97,32 @@ div.pet div#img img {
     width: 100%;
 }
 
-div.pet span#iContCA{
+div.pet span:is(#iContCR, #iContCA){
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     position: absolute;
     bottom: 50%;
-    left: -100%;
     z-index: 2;
     height: 200px;
     width: 400px;
     gap: 10px;
 }
+
+div.pet span#iContCA{
+    left: -150%;
+    transform: rotate3d(0, 1, -1, 35deg) rotateY(30deg) skew(-35deg);
+} div.pet span#iContCA .img {
+    filter: drop-shadow(-10px 10px 0.2em rgba(0, 0, 0, 0.692));
+
+}
 div.pet span#iContCR{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 50%;
-    left: 100%;
-    z-index: 2;
-    height: 200px;
-    width: 400px;
-    gap: 10px;
+    left: 150%;
+    transform: rotate3d(0, 1, -1, -35deg) rotateY(-30deg) skew(35deg);
+
+} div.pet span#iContCR .img {
+    filter: drop-shadow(10px 10px 0.2em rgba(0, 0, 0, 0.692));
 }
 span:is(#iContCR, #iContCA) .img{
     background-position: center;
@@ -144,4 +130,43 @@ span:is(#iContCR, #iContCA) .img{
     background-size: contain;
     height: 60px;
     width: 60px;
+}
+
+div.back{
+    height: 100%;
+    width: 100%;
+    background-color: #e1f4f8;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: grid;
+    grid-template-rows: 2fr 7fr 3fr;
+}
+div.back div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.back div.mid { align-items: end; justify-content: space-between; padding: 0 22%; }
+div.back div.bot { align-items: end; justify-content: space-between; padding: 0 20%; }
+div.back div.top{font-size: 0.7rem; letter-spacing: 0.1rem;}
+div.back div span{
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+}
+span.elements_0{
+    height: 200px;
+    width: 200px;
+}
+span.elements_1{
+    height: 300px;
+    width: 300px;
+}
+#NBA{
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 2rem white inset;
 }

@@ -38,6 +38,36 @@ TRAD = {
     'pequeño':'small',
     'normal':'regular',
 }
+CONFIGS = {
+        0:{
+            'back':'background-image: url(/static/img/back/base.jpg);',
+            'element_0':'background-image: url(/static/img/back/trash_0.png);',
+            'element_1':'background-image: url(/static/img/back/trash_1.png);',
+            'element_2':'background-image: url(/static/img/back/trashcan_0.png); transform: translate(50px, 50px) rotateZ(90deg);',
+            'element_3':'background-image: url(/static/img/back/trashcan_0.png);'
+        },
+        1:{
+            'back':'background-image: url(/static/img/back/base.jpg);',
+            'element_0':'background-image: url(/static/img/back/trash_0.png);',
+            'element_1':'background-image: url(/static/img/back/trash_1.png);',
+            'element_2':'visibility: hidden;',
+            'element_3':'background-image: url(/static/img/back/trashcan_0.png);'
+        },
+        2:{
+            'back':'background-image: url(/static/img/back/base.jpg);',
+            'element_0':'visibility: hidden;',
+            'element_1':'background-image: url(/static/img/back/trash_1.png);',
+            'element_2':'visibility: hidden;',
+            'element_3':'background-image: url(/static/img/back/trashcan_0.png);'
+        },
+        3:{
+            'back':'background-image: url(/static/img/back/base.jpg);',
+            'element_0':'visibility: hidden;',
+            'element_1':'visibility: hidden;',
+            'element_2':'visibility: hidden;',
+            'element_3':'visibility: hidden;'
+        },
+    }
 
 # GENERAL
 def landing(req, msg=''):
@@ -47,12 +77,16 @@ def landing(req, msg=''):
 def menu(req, ssid):
     isValid, auth = validarSSID(ssid)
     if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
-    _, petInfo, itemsInfo = getUserDataBySSID(ssid)
+    userInfo, petInfo, itemsInfo = getUserDataBySSID(ssid)
+    if userInfo.NBA < len(CONFIGS):config = userInfo.NBA
+    else: config = len(CONFIGS) - 1
     ctx = {
         'ssid':ssid,
         'PetInfo':petInfo,
         'petUrlImg':f'{TRAD[petInfo["estado"]]}/{TRAD[petInfo["tipo"]]}.png',
-        'items':ItemlistFromDict(itemsInfo)
+        'items':ItemlistFromDict(itemsInfo),
+        'config':CONFIGS[config],
+        'nba':userInfo.NBA
     }
     return render( req, 'menu.html', ctx )
 
@@ -117,7 +151,7 @@ def selectGame(req, ssid):
 def firstGame(req, ssid):
     isValid, auth = validarSSID(ssid)
     if not isValid: return redirect('/msg/la_sesion_ya_no_es_valida')
-    user, PetData, _  = getUserDataBySSID(ssid)
+    _, PetData, _  = getUserDataBySSID(ssid)
     ctx = {
         'ssid':ssid,
         'imgUrl':f'img/cat/{TRAD[PetData["estado"]]}/{TRAD[PetData["tipo"]]}.png',

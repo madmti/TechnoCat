@@ -67,6 +67,34 @@ CONFIGS = {
             'element_2':'visibility: hidden;',
             'element_3':'visibility: hidden;'
         },
+        4:{
+            'back':'background-image: url(/static/img/back/last.jpg);',
+            'element_0':'visibility: hidden;',
+            'element_1':'visibility: hidden;',
+            'element_2':'visibility: hidden;',
+            'element_3':'visibility: hidden;'
+        },
+        5:{
+            'back':'background-image: url(/static/img/back/last.jpg);',
+            'element_0':'visibility: hidden;',
+            'element_1':'background-image: url(/static/img/back/flower.png);',
+            'element_2':'visibility: hidden;',
+            'element_3':'visibility: hidden;'
+        },
+        6:{
+            'back':'background-image: url(/static/img/back/last.jpg);',
+            'element_0':'visibility: hidden;',
+            'element_1':'background-image: url(/static/img/back/flower.png); z-index: 1;',
+            'element_2':'visibility: hidden;',
+            'element_3':'background-image: url(/static/img/back/food.png); transform: translate(1rem, 5rem) scale(0.5); z-index: 0;',
+        },
+        7:{
+            'back':'background-image: url(/static/img/back/last.jpg);',
+            'element_0':'visibility: hidden;',
+            'element_1':'background-image: url(/static/img/back/flower.png); z-index: 1;',
+            'element_2':'background-image: url(/static/img/back/sand.png); transform: translate(1rem, 5rem) scale(0.5); z-index: 0;',
+            'element_3':'background-image: url(/static/img/back/food.png); transform: translate(1rem, 5rem) scale(0.5); z-index: 0;',
+        }
     }
 
 # GENERAL

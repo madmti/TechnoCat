@@ -43,7 +43,7 @@ section{
     border: solid 0.1em #c29987;
     outline: solid 0.2em #835142;
     border-radius: 1em;
-
+    z-index: 3;
     display: grid;
     place-items: center;
 }

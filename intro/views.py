@@ -94,6 +94,20 @@ CONFIGS = {
             'element_1':'background-image: url(/static/img/back/flower.png); z-index: 1;',
             'element_2':'background-image: url(/static/img/back/sand.png); transform: translate(1rem, 5rem) scale(0.5); z-index: 0;',
             'element_3':'background-image: url(/static/img/back/food.png); transform: translate(1rem, 5rem) scale(0.5); z-index: 0;',
+        },
+        8:{
+            'back':'background-image: url(/static/img/back/final.jpg);',
+            'element_0':'visibility: hidden;',
+            'element_1':'visibility: hidden;',
+            'element_2':'visibility: hidden;',
+            'element_3':'visibility: hidden;',
+        },
+        9:{
+            'back':'background-image: url(/static/img/back/final.jpg);',
+            'element_0':'visibility: hidden;',
+            'element_1':'background-image: url(/static/img/back/flowerPlus.png); z-index: 1;',
+            'element_2':'visibility: hidden;',
+            'element_3':'visibility: hidden;',
         }
     }
 

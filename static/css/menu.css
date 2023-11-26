@@ -111,14 +111,14 @@ div.pet span:is(#iContCR, #iContCA){
 }
 
 div.pet span#iContCA{
-    left: -150%;
+    left: -170%;
     transform: rotate3d(0, 1, -1, 35deg) rotateY(30deg) skew(-35deg);
 } div.pet span#iContCA .img {
     filter: drop-shadow(-10px 10px 0.2em rgba(0, 0, 0, 0.692));
 
 }
 div.pet span#iContCR{
-    left: 150%;
+    left: 170%;
     transform: rotate3d(0, 1, -1, -35deg) rotateY(-30deg) skew(35deg);
 
 } div.pet span#iContCR .img {

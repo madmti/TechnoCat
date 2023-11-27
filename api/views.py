@@ -63,13 +63,13 @@ def newUser(email, passw):
         email=email,
         PetInfo={# JSON con informacion de la mascota
             'name':'pedro',
-            'tipo':'gato',
-            'estado':'normal',
+            'tipo':'normal',
+            'estado':'gris',
         },
         CR=0,
         NBA=0,
         CA=0,
-        Items='{}'
+        Items=dict()
     ).save() #data
 
 def findUserAuthLevel(user:str) -> int:
@@ -94,7 +94,8 @@ def validarAuthKey(AuthKey:bytes) -> list:
 def ItemlistFromDict(d):
     lCA = list()
     lCR = list()
-    keys = d.items()
+    try: keys = d.items()
+    except: return { 'CA':lCA, 'CR':lCR }
     for item in keys:
         for _ in range(item[1]): 
             i = Item.objects.get(name=item[0])

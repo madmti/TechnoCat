@@ -92,10 +92,31 @@
                 <a href="/menu/{{ssid}}">Volver</a>
             </div>
             <div class="foot">
-                <a href="/about/">Mas info</a>
-            </div>
-            <div class="foot">
-                <a href="/help/">Ayuda</a>
+                <p>The Team</p>
+                <div>
+                    <small>
+                        {% load static %}
+                        <img src="{% static 'img/example/item.png' %}" width="20" height="20" alt="">
+                        Matias Peñaloza
+                    </small>
+                    <small>
+                        {% load static %}
+                        <img src="{% static 'img/stickers/3d.svg' %}" width="20" height="20" alt="">
+                        Pablo Lagos
+                    </small>
+                </div>
+                <div>
+                    <small>
+                        {% load static %}
+                        <img src="{% static 'img/stickers/reciclar2.svg' %}" width="20" height="20" alt="">
+                        Isidora Guerra
+                    </small>
+                    <small>
+                        {% load static %}
+                        <img src="{% static 'img/credit/ca.png' %}" width="20" height="20" alt="">
+                        Martina Mardonez
+                    </small>
+                </div>
             </div>
         </footer>
     </div>

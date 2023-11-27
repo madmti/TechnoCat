@@ -1,4 +1,4 @@
-FROM arm32v7/python:3.11.6-alpine3.18
+FROM python:3.11.6-alpine3.18
 
 ENV PYTHONUNBUFFERED=1
 

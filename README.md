@@ -12,3 +12,7 @@ El fin de esta aplicacion web es incentivar el reciclaje y acciones que conlleve
 - SQLite 3
 
 Proyecto para **Introduccion a la ingenieria**
+
+## Preview
+![Login](/screenshots/landing_page.png)
+![Personalizacion](/screenshots/editpet.png)
